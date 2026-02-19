@@ -1,0 +1,9 @@
+[
+  { "day": 1, "juz": 1, "surahs": "Al-Fatihah → Al-Baqarah:141" },
+  { "day": 2, "juz": 2, "surahs": "Al-Baqarah:142-252" },
+  { "day": 3, "juz": 3, "surahs": "Al-Baqarah:253 → Aal-E-Imran:92" },
+  { "day": 4, "juz": 4, "surahs": "Aal-E-Imran:93-200" },
+  { "day": 5, "juz": 5, "surahs": "An-Nisa:1-23" },
+
+  { "day": 30, "juz": 30, "surahs": "An-Naba → An-Nas" }
+]

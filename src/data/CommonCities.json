@@ -1,0 +1,17 @@
+[
+  { "name": "Yangon", "country": "Myanmar" },
+  { "name": "Mandalay", "country": "Myanmar" },
+  { "name": "Naypyidaw", "country": "Myanmar" },
+  { "name": "Bago", "country": "Myanmar" },
+  { "name": "Mawlamyine", "country": "Myanmar" },
+  { "name": "Pathein", "country": "Myanmar" },
+  { "name": "Taunggyi", "country": "Myanmar" },
+  { "name": "Sittwe", "country": "Myanmar" },
+  { "name": "Myitkyina", "country": "Myanmar" },
+  { "name": "Monywa", "country": "Myanmar" },
+  { "name": "Bangkok", "country": "Thailand" },
+  { "name": "Singapore", "country": "Singapore" },
+  { "name": "Kuala Lumpur", "country": "Malaysia" },
+  { "name": "Jakarta", "country": "Indonesia" },
+  { "name": "Mecca", "country": "Saudi Arabia" }
+]

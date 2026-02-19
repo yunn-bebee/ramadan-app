@@ -1,0 +1,111 @@
+/* src/styles/globals.css */
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* =======================
+     PRIMARY: Soft Olive (peace, Ramadan serenity)
+  ========================= */
+  --color-olive-50: #f4f7f2;
+  --color-olive-100: #e7ede2;
+  --color-olive-200: #d2ddc9;
+  --color-olive-300: #b8c8a9;
+  --color-olive-400: #8fa07a;
+  --color-olive-500: #5f6f52;
+  --color-olive-600: #4e5c44;
+  --color-olive-700: #3f4a37;
+  --color-olive-800: #2f372a;
+  --color-olive-900: #1f251c;
+  --color-olive-950: #12150f;
+ --color-olive: #5f6f52;
+  /* =======================
+     NEUTRAL: Deep Night/Navy (backgrounds, depth)
+  ========================= */
+  --color-night-50: #f1f5f9;
+  --color-night-100: #e2e8f0;
+  --color-night-200: #cbd5e1;
+  --color-night-300: #94a3b8;
+  --color-night-400: #64748b;
+  --color-night-500: #334155;
+  --color-night-600: #1e293b;
+  --color-night-700: #172135;
+  --color-night-800: #0f172a;
+  --color-night-900: #0b1120;
+  --color-night-950: #070a14;
+
+  /* =======================
+     ACCENT: Muted Gold (highlights, barakah)
+  ========================= */
+  --color-gold-50: #fbf6ea;
+  --color-gold-100: #f6ebd2;
+  --color-gold-200: #ecd6a5;
+  --color-gold-300: #e2c178;
+  --color-gold-400: #d6ae59;
+  --color-gold-500: #c5a059;
+  --color-gold-600: #a68647;
+  --color-gold-700: #866c39;
+  --color-gold-800: #67522c;
+  --color-gold-900: #47381e;
+  --color-gold-950: #2a2112;
+
+  /* =======================
+     SURFACE: Warm Sand/Cream (main bg)
+  ========================= */
+  --color-sand: #fdfbf7;
+  --color-sand-dark: #0f172a;
+
+  /* =======================
+     TEXT & MISC
+  ========================= */
+  --color-text-primary: var(--color-night-800);
+  --color-text-inverted: var(--color-sand);
+
+  /* Fonts */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-arabic: "Traditional Arabic", "Scheherazade New", "Amiri", "Noto Naskh Arabic", serif;
+}
+
+/* Global base styles */
+@layer base {
+  body {
+    @apply text-text-primary font-sans antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+
+  .font-arabic {
+    font-family: var(--font-arabic);
+  }
+
+  input, textarea, select, button {
+    @apply transition-all duration-200;
+  }
+
+  button:active {
+    @apply scale-95;
+  }
+}
+
+/* 
+/* Optional: nice focus rings */
+input:focus, textarea:focus, select:focus, button:focus-visible {
+  @apply outline-none ring-2 ring-offset-2 ring-olive-500;
+}
+
+/* Scrollbar (modern & subtle) */
+::-webkit-scrollbar {
+  @apply w-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-night-950/20 rounded-full;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-olive-500/50 rounded-full hover:bg-olive-500;
+}

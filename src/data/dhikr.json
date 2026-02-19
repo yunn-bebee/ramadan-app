@@ -1,0 +1,37 @@
+[
+  {
+    "id": "subhanallah",
+    "label": "SubhanAllah",
+    "arabic": "سُبْحَانَ ٱللَّٰهِ",
+    "defaultTarget": 33,
+    "isCustom": false
+  },
+  {
+    "id": "alhamdulillah",
+    "label": "Alhamdulillah",
+    "arabic": "ٱلْحَمْدُ لِلَّٰهِ",
+    "defaultTarget": 33,
+    "isCustom": false
+  },
+  {
+    "id": "allahuakbar",
+    "label": "Allahu Akbar",
+    "arabic": "ٱللَّٰهُ أَكْبَرُ",
+    "defaultTarget": 34,
+     "isCustom": false
+  },
+  {
+    "id": "astaghfirullah",
+    "label": "Astaghfirullah",
+    "arabic": "أَسْتَغْفِرُ ٱللَّٰهَ",
+    "defaultTarget": 100,
+    "isCustom": false
+  },
+  {
+    "id": "laillahaillallah",
+    "label": "La ilaha illa Allah",
+    "arabic": "لَا إِلَٰهَ إِلَّا ٱللَّٰهُ",
+    "defaultTarget": 10,
+    "isCustom": false
+  }
+]
