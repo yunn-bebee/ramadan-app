@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import commonCities from '../../data/commonCities.json';
+import commonCities from '../../data/CommonCities.json';
 import dayjs from 'dayjs';
 import { useAppContext } from '../../contexts/AppContext'; // adjust path if needed
 

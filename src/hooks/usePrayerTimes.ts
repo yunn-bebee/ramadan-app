@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAppContext } from '../contexts/AppContext';
-import commonCities from '../data/commonCities.json'; // adjust path if needed
+import commonCities from '../data/CommonCities.json'; // adjust path if needed
 
 // Type the JSON
 interface CityEntry {
