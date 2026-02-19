@@ -2,7 +2,7 @@ import type { Settings } from "../types/types";
 
 
 export const DEFAULT_SETTINGS: Settings = {
-  city: 'Saitama',               // Nice touch for you, ne? ♡
+  city: 'Yangon',               // Nice touch for you, ne? ♡
   calculationMethod: 'MuslimWorldLeague', // Most common for many places
   theme: 'auto' as const,
   lastTenDaysMode: false,
