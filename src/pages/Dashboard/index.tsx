@@ -115,27 +115,39 @@ export default function Dashboard() {
       </header>
 
       {/* --- HERO COUNTDOWN CARD (spacious like Journal cards) --- */}
-      <section className="px-5 mb-8">
-        <div className="relative overflow-hidden rounded-[2.5rem] bg-slate-900 dark:bg-slate-900 p-8 text-white shadow-lg">
-          <div className="relative z-10 flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-            <div>
-              <p className="text-[10px] font-black uppercase tracking-widest text-olive-400 mb-1">
-                {currentPrayer ? `Active • ${currentPrayer}` : 'Upcoming'}
-              </p>
-              <h2 className="text-4xl font-bold tracking-tighter">
-                {nextPrayerInfo?.name || '---'}
-              </h2>
+      <section className="px-5 mb-8  bg-night-900 dark:bg-night-900 rounded-[2rem] p-5 text-white shadow-xl mx-5 active:scale-[0.99] transition-transform">
+        <div className="absolute -top-10 -right-10 w-32 h-32 bg-olive-500/10 rounded-full blur-2xl" />
+        
+        <div className="relative z-10 space-y-3">
+          <div className="flex justify-between items-center">
+            <span className="text-[10px] font-black uppercase tracking-widest text-olive-400">
+              {currentPrayer ? 'Currently In' : 'Coming Up'}
+            </span>
+            <span className="text-[10px] font-mono opacity-50">{dayjs().format('MMM DD')}</span>
+          </div>
+
+          <div className="flex flex-col items-center py-2">
+            <h2 className="text-4xl font-serif font-bold text-white tracking-tight">
+              {currentPrayer || nextPrayerInfo?.name}
+            </h2>
+            <div className="mt-2 text-3xl font-mono font-bold text-gold-400 tabular-nums">
+              {nextPrayerInfo ? formatCountdown(nextPrayerInfo.remainingMs) : '00:00:00'}
             </div>
-            <div className="text-left md:text-right">
-              <p className="text-3xl font-mono font-bold text-gold-400">
-                {nextPrayerInfo ? formatCountdown(nextPrayerInfo.remainingMs) : '00:00'}
-              </p>
-              <p className="text-[9px] opacity-40 font-bold uppercase">Until Adhan</p>
-            </div>
+            <p className="text-[10px] opacity-40 uppercase tracking-tighter mt-1 font-bold">Time remaining until next Adhan</p>
+          </div>
+
+          <div className="flex justify-between items-center bg-white/5 p-3 rounded-2xl border border-white/5">
+             <div className="text-center flex-1 border-r border-white/10">
+                <p className="text-[9px] opacity-50 uppercase">Start Time</p>
+                <p className="text-xs font-bold">{nextPrayerInfo?.timeStr}</p>
+             </div>
+             <div className="text-center flex-1">
+                <p className="text-[9px] opacity-50 uppercase">Status</p>
+                <p className="text-xs font-bold text-olive-400">{currentPrayer ? 'Active' : 'Awaiting'}</p>
+             </div>
           </div>
         </div>
       </section>
-
       {/* --- QUICK NAVIGATION (icon grid, but with more breathing room) --- */}
       <section className="px-5 mb-8">
         <div className="grid grid-cols-4 gap-4">
@@ -216,7 +228,7 @@ export default function Dashboard() {
 
       {/* --- HADITH CARD (spacious, with Arabic focus) --- */}
       <section className="px-5 mb-8">
-        <div className="bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 shadow-sm">
+        <div className="bg-olive-300 dark:bg-olive-700 rounded-[2.5rem] p-8 border border-slate-100 dark:border-slate-800 shadow-sm">
           <div className="flex items-center gap-2 mb-4 opacity-40">
             <Zap size={14} />
             <span className="text-[9px] font-black uppercase tracking-widest">Daily Hadith</span>
