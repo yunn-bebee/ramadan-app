@@ -1,7 +1,7 @@
 # 🌙 Ramadan Companion 
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/yunn-bebee/ramadan-app/main/public/screenshot.png" alt="Ramadan Companion Banner" width="800">
+  <img src="/image.png" alt="Ramadan Companion Banner" width="800">
 </p>
 
 <p align="center">
