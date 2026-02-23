@@ -58,7 +58,7 @@ export default function Ibadah() {
               log.fasted ? 'bg-olive text-white shadow-lg' : 'bg-sand dark:bg-night-800'
             }`}
           >
-            {log.fasted ? "⭐" : "🌙"}
+            {log.fasted ? "⭐" : "❌"}
           </button>
         </div>
 

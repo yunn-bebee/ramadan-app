@@ -20,6 +20,7 @@ export interface Settings {
   showArabicHadith: boolean;
   notificationsEnabled?: boolean
   username?: string;
+  ramadanStartDate?: string;
   // Add more toggles later as needed
 }
 

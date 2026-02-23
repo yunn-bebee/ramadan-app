@@ -11,10 +11,11 @@ export const DEFAULT_SETTINGS: Settings = {
     count: 1,
     dailyTarget: 20,             // ~604 pages / 30 days
   },
+  ramadanStartDate: undefined,
   taraweehGoal: 8,                 // or 20 — user can change in settings
   showArabicHadith: true,
   notificationsEnabled: false,     // future-proof
   username: undefined,
 };
-export const RAMADAN_START_2026 = '2026-02-20'; // Your local start date
+export const FALLBACK_RAMADAN_START_2026 = '2026-02-20'; // Your local start date
 export const RAMADAN_DAYS = 30;

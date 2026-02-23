@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { 
   Heart, 
-  Calendar, 
+   
   ChevronRight, 
   Save, 
   BookOpen, 
@@ -13,7 +13,7 @@ import {
   CheckCircle2 
 } from 'lucide-react'; 
 import { useAppContext } from '../../contexts/AppContext';
-import { RAMADAN_START_2026 } from '../../constants/defaults';
+import { FALLBACK_RAMADAN_START_2026 } from '../../constants/defaults';
 
 export default function Journal() {
   const { appData, today, updateDailyLog } = useAppContext();
@@ -31,9 +31,9 @@ export default function Journal() {
     setJournalText(log?.journal ?? '');
   }, [selectedDate, appData.dailyLogs]);
 
-  const ramadanStart = dayjs(RAMADAN_START_2026);
+  const ramadanStart = appData.settings.ramadanStartDate || FALLBACK_RAMADAN_START_2026;
   const calendarDays = Array.from({ length: 30 }, (_, i) => {
-    const dayDate = ramadanStart.add(i, 'day').format('YYYY-MM-DD');
+    const dayDate = dayjs(ramadanStart).add(i, 'day').format('YYYY-MM-DD');
     const dayLog = appData.dailyLogs[dayDate];
     return {
       date: dayDate,
@@ -59,7 +59,7 @@ export default function Journal() {
           <p className="text-sm font-medium opacity-60 mt-1 uppercase tracking-widest">Ramadan 2026</p>
         </div>
         <div className="bg-white/80 dark:bg-night-900/80 backdrop-blur-md p-3 rounded-2xl border border-olive-100 dark:border-night-800 shadow-sm">
-          <Calendar className="w-6 h-6 text-olive-600" />
+         D - {dayjs().diff(dayjs(ramadanStart), 'day') + 1}
         </div>
       </header>
 
@@ -117,11 +117,11 @@ export default function Journal() {
                   : 'grayscale opacity-40 hover:grayscale-0'
                 } disabled:cursor-default`}
               >
-                {level === 1 && '☁️'}
-                {level === 2 && '🍃'}
-                {level === 3 && '🌙'}
-                {level === 4 && '✨'}
-                {level === 5 && '🌟'}
+                {level === 1 && '😭'}
+                {level === 2 && '🙁'}
+                {level === 3 && '😐'}
+                {level === 4 && '🙂'}
+                {level === 5 && '😍'}
               </button>
             ))}
           </div>

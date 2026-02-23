@@ -1,29 +1,122 @@
 [
-  {
-    "id": 1,
-    "text": "Actions are judged by intentions, so each man will have what he intended...",
-    "arabic": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى...",
-    "source": "Bukhari & Muslim"
-  },
-  {
-    "id": 2,
-    "text": "Islam has been built on five [pillars]: testifying that there is no deity worthy of worship except Allah and that Muhammad is the Messenger of Allah...",
-    "arabic": "بُنِيَ الْإِسْلَامُ عَلَى خَمْسٍ...",
-    "source": "Bukhari & Muslim"
-  },
-  {
-    "id": 3,
-    "text": "Islam has been built upon five: testifying that there is no god but Allah...",
-    "source": "Bukhari & Muslim"
-  },
-  {
-    "id": 4,
-    "text": "Whoever innovates something in this matter of ours that is not of it will have it rejected.",
-    "source": "Bukhari & Muslim"
-  },
-  {
-    "id": 5,
-    "text": "Every action is judged by its intention...",
-    "source": "..."
-  }
+{
+"id": 1,
+"text": "Actions are judged by intentions, so each man will have what he intended. Whoever emigrated for worldly gain or for a woman he would marry, his emigration was for that which he emigrated.",
+"arabic": "إِنَّمَا الْأَعْمَالُ بِالنِّيَّاتِ، وَإِنَّمَا لِكُلِّ امْرِئٍ مَا نَوَى، فَمَنْ كَانَتْ هِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ فَهِجْرَتُهُ إِلَى اللَّهِ وَرَسُولِهِ، وَمَنْ كَانَتْ هِجْرَتُهُ لِدُنْيَا يُصِيبُهَا أَوِ امْرَأَةٍ يَنْكِحُهَا فَهِجْرَتُهُ إِلَى مَا هَاجَرَ إِلَيْهِ.",
+"source": "Bukhari & Muslim"
+},
+{
+"id": 2,
+"text": "Islam has been built on five [pillars]: testifying that there is no deity worthy of worship except Allah and that Muhammad is the Messenger of Allah, establishing prayer, giving zakat, pilgrimage to the House, and fasting in Ramadan.",
+"arabic": "بُنِيَ الْإِسْلَامُ عَلَى خَمْسٍ: شَهَادَةِ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَأَنَّ مُحَمَّدًا رَسُولُ اللَّهِ، وَإِقَامِ الصَّلَاةِ، وَإِيتَاءِ الزَّكَاةِ، وَحَجِّ الْبَيْتِ، وَصَوْمِ رَمَضَانَ.",
+"source": "Bukhari & Muslim"
+},
+{
+"id": 3,
+"text": "Whoever innovates something in this matter of ours that is not of it will have it rejected.",
+"arabic": "مَنْ أَحْدَثَ فِي أَمْرِنَا هَذَا مَا لَيْسَ مِنْهُ فَهُوَ رَدٌّ.",
+"source": "Bukhari & Muslim"
+},
+{
+"id": 4,
+"text": "None of you truly believes until he loves for his brother what he loves for himself.",
+"arabic": "لَا يُؤْمِنُ أَحَدُكُمْ حَتَّى يُحِبَّ لِأَخِيهِ مَا يُحِبُّ لِنَفْسِهِ.",
+"source": "Bukhari & Muslim"
+},
+{
+"id": 5,
+"text": "The best of you are those who learn the Quran and teach it.",
+"arabic": "خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ.",
+"source": "Bukhari"
+},
+{
+"id": 6,
+"text": "Whoever believes in Allah and the Last Day, let him speak good or remain silent.",
+"arabic": "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ.",
+"source": "Bukhari & Muslim"
+},
+{
+"id": 7,
+"text": "A Muslim is the one from whose tongue and hand Muslims are safe.",
+"arabic": "الْمُسْلِمُ مَنْ سَلِمَ الْمُسْلِمُونَ مِنْ لِسَانِهِ وَيَدِهِ.",
+"source": "Bukhari"
+},
+{
+"id": 8,
+"text": "The strong is not the one who overcomes people by his strength, but the strong is the one who controls himself while in anger.",
+"arabic": "لَيْسَ الشَّدِيدُ بِالصُّرَعَةِ، إِنَّمَا الشَّدِيدُ الَّذِي يَمْلِكُ نَفْسَهُ عِنْدَ الْغَضَبِ.",
+"source": "Bukhari & Muslim"
+},
+{
+"id": 9,
+"text": "The best among you are those who have the best manners and character.",
+"arabic": "خِيَارُكُمْ أَحَاسِنُكُمْ أَخْلَاقًا.",
+"source": "Bukhari"
+},
+{
+"id": 10,
+"text": "Do not envy one another, do not inflate prices one to another, do not hate one another, do not turn away from one another, do not undercut one another, but be you, O servants of Allah, brothers.",
+"arabic": "لَا تَحَاسَدُوا، وَلَا تَنَاجَشُوا، وَلَا تَبَاغَضُوا، وَلَا تَدَابَرُوا، وَلَا يَبِعْ بَعْضُكُمْ عَلَى بَيْعِ بَعْضٍ، وَكُونُوا عِبَادَ اللَّهِ إِخْوَانًا.",
+"source": "Bukhari & Muslim"
+},
+{
+"id": 11,
+"text": "Whoever believes in Allah and the Last Day, let him honor his guest.",
+"arabic": "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيُكْرِمْ ضَيْفَهُ.",
+"source": "Bukhari & Muslim"
+},
+{
+"id": 12,
+"text": "The example of the believers in their mutual love, mercy, and compassion is like that of a body; if one limb complains, the whole body responds to it with sleeplessness and fever.",
+"arabic": "مَثَلُ الْمُؤْمِنِينَ فِي تَوَادِّهِمْ وَتَرَاحُمِهِمْ وَتَعَاطُفِهِمْ مَثَلُ الْجَسَدِ إِذَا اشْتَكَى مِنْهُ عُضْوٌ تَدَاعَى لَهُ سَائِرُ الْجَسَدِ بِالسَّهَرِ وَالْحُمَّى.",
+"source": "Bukhari & Muslim"
+},
+{
+"id": 13,
+"text": "The believer is not stung from the same hole twice.",
+"arabic": "لَا يُلْدَغُ الْمُؤْمِنُ مِنْ جُحْرٍ مَرَّتَيْنِ.",
+"source": "Bukhari & Muslim"
+},
+{
+"id": 14,
+"text": "The most beloved of deeds to Allah are the most consistent, even if they are few.",
+"arabic": "أَحَبُّ الْأَعْمَالِ إِلَى اللَّهِ أَدْوَمُهَا وَإِنْ قَلَّ.",
+"source": "Bukhari & Muslim"
+},
+{
+"id": 15,
+"text": "Make things easy and do not make them difficult, give glad tidings and do not repel.",
+"arabic": "يَسِّرُوا وَلَا تُعَسِّرُوا، وَبَشِّرُوا وَلَا تُنَفِّرُوا.",
+"source": "Bukhari"
+},
+{
+"id": 16,
+"text": "None of you should wish for death because of a calamity that befalls him; but if he must wish for it, he should say: O Allah, keep me alive as long as life is better for me, and cause me to die when death is better for me.",
+"arabic": "لَا يَتَمَنَّيَنَّ أَحَدُكُمُ الْمَوْتَ مِنْ ضُرٍّ أَصَابَهُ، فَإِنْ كَانَ لَا بُدَّ فَاعِلًا فَلْيَقُلِ: اللَّهُمَّ أَحْيِنِي مَا كَانَتِ الْحَيَاةُ خَيْرًا لِي، وَتَوَفَّنِي إِذَا كَانَتِ الْوَفَاةُ خَيْرًا لِي.",
+"source": "Bukhari & Muslim"
+},
+{
+"id": 17,
+"text": "The one who cares for an orphan and myself will be like this in Paradise, and he gestured with his index and middle fingers, slightly apart.",
+"arabic": "أَنَا وَكَافِلُ الْيَتِيمِ فِي الْجَنَّةِ هَكَذَا وَقَالَ بِإِصْبَعَيْهِ السَّبَّابَةِ وَالْوُسْطَى.",
+"source": "Bukhari"
+},
+{
+"id": 18,
+"text": "A person will be with those whom he loves.",
+"arabic": "الْمَرْءُ مَعَ مَنْ أَحَبَّ.",
+"source": "Bukhari & Muslim"
+},
+{
+"id": 19,
+"text": "Faith consists of seventy-some branches, the highest of which is saying 'There is no god but Allah,' and the lowest is removing something harmful from the path. And modesty is a branch of faith.",
+"arabic": "الْإِيمَانُ بِضْعٌ وَسَبْعُونَ شُعْبَةً، فَأَفْضَلُهَا قَوْلُ لَا إِلَهَ إِلَّا اللَّهُ، وَأَدْنَاهَا إِمَاطَةُ الْأَذَى عَنِ الطَّرِيقِ، وَالْحَيَاءُ شُعْبَةٌ مِنَ الْإِيمَانِ.",
+"source": "Bukhari & Muslim"
+},
+{
+"id": 20,
+"text": "Whoever believes in Allah and the Last Day should either speak good or remain silent.",
+"arabic": "مَنْ كَانَ يُؤْمِنُ بِاللَّهِ وَالْيَوْمِ الْآخِرِ فَلْيَقُلْ خَيْرًا أَوْ لِيَصْمُتْ.",
+"source": "Bukhari & Muslim"
+}
 ]

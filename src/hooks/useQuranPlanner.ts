@@ -1,6 +1,6 @@
 // src/hooks/useQuranTracker.ts
 import { useAppContext } from '../contexts/AppContext';
-import { RAMADAN_START_2026 } from '../constants/defaults';
+import { FALLBACK_RAMADAN_START_2026 } from '../constants/defaults';
 import dayjs from 'dayjs';
 import juzRanges from '../data/pageToSurah.json';
 
@@ -23,7 +23,7 @@ export function useQuranTracker() {
   const totalRead = Object.values(appData.dailyLogs).reduce((sum, l) => sum + (l?.quranPages ?? 0), 0);
   const remainingPages = Math.max(0, targetTotal - totalRead);
 
-  const daysPassed = dayjs(today).diff(dayjs(RAMADAN_START_2026), 'day') + 1;
+  const daysPassed = dayjs(today).diff(dayjs(appData.settings.ramadanStartDate || FALLBACK_RAMADAN_START_2026), 'day') + 1;
   const daysRemaining = Math.max(0, 30 - daysPassed);
   const suggestedDaily = daysRemaining > 0 ? Math.ceil(remainingPages / daysRemaining) : 0;
 

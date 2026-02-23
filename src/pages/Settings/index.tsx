@@ -3,6 +3,7 @@ import commonCities from '../../data/CommonCities.json';
 import dayjs from 'dayjs';
 import { useAppContext } from '../../contexts/AppContext';
 import { SettingsIcon } from 'lucide-react';
+import { FALLBACK_RAMADAN_START_2026 } from '../../constants/defaults';
 
 interface City {
   name: string;
@@ -22,7 +23,7 @@ export default function Settings() {
   const [quranGoalCount, setQuranGoalCount] = useState(appData.settings.quranGoal.count);
   const [taraweehRakahs, setTaraweehRakahs] = useState(appData.settings.taraweehGoal);
   const [showArabicHadith, setShowArabicHadith] = useState(appData.settings.showArabicHadith);
-
+  const [ramadanStartDate, setRamadanStartDate] = useState(appData.settings.ramadanStartDate ?? '');
   const handleSave = () => {
     setAppData((prev) => ({
       ...prev,
@@ -39,13 +40,14 @@ export default function Settings() {
         },
         taraweehGoal: taraweehRakahs,
         showArabicHadith,
+        ramadanStartDate: ramadanStartDate || undefined,
       },
     }));
     alert('Settings saved beautifully! ♡');
   };
 
   return (
-    <div className="min-h-screen bg-sand dark:bg-night-950 pb-28   space-y-6 max-w-md mx-auto transition-colors duration-500">
+    <div className="min-h-screen bg-sand dark:bg-night-950    space-y-6 max-w-md mx-auto transition-colors duration-500">
       
       {/* HEADER */}
         {/* --- HEADER --- */}
@@ -82,7 +84,29 @@ Settings          </h1>
             </div>
           </div>
         </section>
+      <section className="bg-white dark:bg-night-900 p-6 rounded-[2rem] shadow-sm border border-olive-100 dark:border-night-800">
+  <div className="flex items-center gap-2 mb-6 opacity-70">
+    <span className="text-lg">🌙</span>
+    <h2 className="text-xs font-bold uppercase tracking-widest">Ramadan Start</h2>
+  </div>
 
+  <div className="space-y-4">
+    <div className="flex flex-col gap-2">
+      <label className="text-sm font-medium px-1">When does Ramadan start for you?</label>
+      <input
+        type="date"
+        value={appData.settings.ramadanStartDate ?? ''}
+        onChange={(e) => {
+         setRamadanStartDate(e.target.value)
+        }}
+        className="w-full bg-sand dark:bg-night-800 border-none p-4 rounded-2xl focus:ring-2 focus:ring-olive transition-all"
+      />
+      <p className="text-xs text-neutral-600 dark:text-neutral-400">
+        Choose your local moon-sighting date — we'll use this for day counting ♡
+      </p>
+    </div>
+  </div>
+</section>
         {/* Prayer Section */}
         <section className="bg-white dark:bg-night-900 p-6 rounded-[2rem] shadow-sm border border-olive-100 dark:border-night-800">
           <div className="flex items-center gap-2 mb-6 opacity-70">
@@ -208,7 +232,11 @@ Settings          </h1>
             </div>
           </div>
         </section>
-
+                {!appData.settings.ramadanStartDate && (
+  <p className="text-xs text-amber-600 dark:text-amber-400 mt-2">
+    You haven’t set your Ramadan start date yet — the app is using {FALLBACK_RAMADAN_START_2026} as fallback.
+  </p>
+)}
         {/* Save Button */}
         <button
           onClick={handleSave}

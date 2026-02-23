@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import dayjs from 'dayjs';
 import { useAppContext } from '../../contexts/AppContext';
 import { useQuranMetadata } from '../../hooks/useQuranMetadata';
-import { RAMADAN_START_2026 } from '../../constants/defaults';
+import { FALLBACK_RAMADAN_START_2026 } from '../../constants/defaults';
 import { HiBookmark, HiChevronRight, HiPlus } from 'react-icons/hi';
 import { Book } from 'lucide-react';
 
@@ -18,13 +18,13 @@ export default function Quran() {
     log.quranLastLocation?.surahId ?? null
   );
   const [bookmarkAyah, setBookmarkAyah] = useState<number>(
-    log.quranLastLocation?.ayah ?? 1
+    log.quranLastLocation?.ayah ?? 0
   );
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setBookmarkSurahId(log.quranLastLocation?.surahId ?? null);
-    setBookmarkAyah(log.quranLastLocation?.ayah ?? 1);
+    setBookmarkAyah(log.quranLastLocation?.ayah ?? 0);
   }, [log.quranLastLocation]);
 
   const goal = appData.settings.quranGoal;
@@ -34,7 +34,7 @@ export default function Quran() {
   const remainingPages = Math.max(0, targetTotal - totalRead);
   const progressPercent = Math.min(100, (totalRead / targetTotal) * 100);
 
-  const daysPassed = dayjs(today).diff(dayjs(RAMADAN_START_2026), 'day') + 1;
+  const daysPassed = dayjs(today).diff(dayjs(appData.settings.ramadanStartDate || FALLBACK_RAMADAN_START_2026), 'day') + 1;
   const daysRemaining = Math.max(0, 30 - daysPassed);
   const suggestedDaily = daysRemaining > 0 ? Math.ceil(remainingPages / daysRemaining) : 0;
 
@@ -49,6 +49,7 @@ export default function Quran() {
     updateDailyLog({
       quranLastLocation: { surahId: bookmarkSurahId, ayah: bookmarkAyah },
     });
+    alert("Bookmark saved! May it be a means of barakah in your recitation ♡");
   };
 
   return (
@@ -172,7 +173,7 @@ Quran Plan          </h1>
               <input
                 type="number"
                 value={bookmarkAyah}
-                onChange={(e) => setBookmarkAyah(Math.max(1, Number(e.target.value)))}
+                onChange={(e) => setBookmarkAyah(Number(e.target.value) )}
                 className="w-full bg-white dark:bg-night-950 border-none rounded-xl p-4 text-sm focus:ring-2 focus:ring-olive-500 dark:text-sand shadow-inner"
               />
             </div>

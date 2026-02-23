@@ -3,7 +3,6 @@ import BottomNav from './BottomNav'
 import { useEffect } from 'react';
 import { useAppContext } from '../contexts/AppContext';
 import UsernamePopup from '../components/UsernamePopUp';
-
 export default function AppLayout() {
   const { appData } = useAppContext();
 
@@ -22,7 +21,6 @@ export default function AppLayout() {
   return (
     // Added 'transition-colors' for smooth theme switching and 'selection' colors for branding
     <div className="min-h-screen flex flex-col bg-sand dark:bg-night-950 text-night-900 dark:text-sand transition-colors duration-500 selection:bg-olive-200">
-      
       {/* Background Ornament (Optional: adds a soft glow to the top right) */}
       <div className="fixed top-0 right-0 w-[300px] h-[300px] bg-olive-100/40 dark:bg-olive-900/10 blur-[100px] pointer-events-none" />
       

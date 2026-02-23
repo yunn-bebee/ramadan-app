@@ -13,5 +13,23 @@
   { "name": "Singapore", "country": "Singapore" },
   { "name": "Kuala Lumpur", "country": "Malaysia" },
   { "name": "Jakarta", "country": "Indonesia" },
-  { "name": "Mecca", "country": "Saudi Arabia" }
+  { "name": "Mecca", "country": "Saudi Arabia" },
+
+  { "name": "London", "country": "England" },
+  { "name": "Manchester", "country": "England" },
+  { "name": "Birmingham", "country": "England" },
+  
+  { "name": "Houston", "country": "Texas, USA" },
+  { "name": "Dallas", "country": "Texas, USA" },
+  { "name": "Austin", "country": "Texas, USA" },
+  { "name": "San Antonio", "country": "Texas, USA" },
+
+  { "name": "Los Angeles", "country": "California, USA" },
+  { "name": "San Francisco", "country": "California, USA" },
+  { "name": "San Diego", "country": "California, USA" },
+
+  { "name": "Sydney", "country": "Australia" },
+  { "name": "Melbourne", "country": "Australia" },
+  { "name": "Brisbane", "country": "Australia" },
+  { "name": "Perth", "country": "Australia" }
 ]

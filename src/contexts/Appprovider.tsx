@@ -31,8 +31,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   };
 
   const [appData, setAppData] = useLocalStorage<RamadanAppData>('ramadanAppData', initialData);
-  const today = new Date().toISOString().split('T')[0];
-
+  const today = new Date().toLocaleDateString('en-CA'); // en-CA format is YYYY-MM-DD in local timezone
+  
   const updateDailyLog = useCallback((updates: Partial<DailyLog>) => {
     setAppData((prev) => {
       const currentLog = prev.dailyLogs[today] || {
