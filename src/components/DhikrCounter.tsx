@@ -1,4 +1,3 @@
-// src/components/DhikrSection.tsx
 import { useState } from 'react';
 import { useAppContext } from '../contexts/AppContext';
 import defaultDhikrRaw from '../data/dhikr.json';
@@ -11,10 +10,19 @@ interface DhikrDisplay extends Dhikr {
 }
 
 export default function DhikrSection() {
-  const { appData, addCustomDhikr, editCustomDhikr, deleteCustomDhikr, today, updateDailyLog } = useAppContext();
+  const { 
+    appData, 
+    addCustomDhikr, 
+    editCustomDhikr, 
+    deleteCustomDhikr, 
+    today, 
+    updateDailyLog 
+  } = useAppContext();
 
   const [mode, setMode] = useState<'counter' | 'checklist'>('counter');
   const [newLabel, setNewLabel] = useState('');
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editValue, setEditValue] = useState('');
 
   const todayCounts = appData.dailyLogs[today]?.dhikrCounts ?? {};
 
@@ -43,15 +51,14 @@ export default function DhikrSection() {
     });
   };
 
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [editValue, setEditValue] = useState('');
- const addCustom = () => {
+  const addCustom = () => {
     if (!newLabel.trim()) return;
-addCustomDhikr(newLabel);
-   setNewLabel('');
+    addCustomDhikr(newLabel);
+    setNewLabel('');
   };
+
   const startEdit = (dhikr: Dhikr) => {
-    if (!dhikr.isCustom) return; // only custom can be edited
+    if (!dhikr.isCustom) return; 
     setEditingId(dhikr.id);
     setEditValue(dhikr.label);
   };
@@ -63,11 +70,6 @@ addCustomDhikr(newLabel);
     setEditValue('');
   };
 
-  const cancelEdit = () => {
-    setEditingId(null);
-    setEditValue('');
-  };
-
   const handleDelete = (id: string) => {
     if (window.confirm('Delete this custom dhikr forever?')) {
       deleteCustomDhikr(id);
@@ -75,22 +77,28 @@ addCustomDhikr(newLabel);
   };
 
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-lg border border-olive/10">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-        <h2 className="text-xl font-bold text-night">Dhikr Today</h2>
-        <div className="flex gap-2 bg-sand p-1 rounded-xl">
+    <div className="bg-white dark:bg-night-900 p-8 rounded-[2.5rem] shadow-sm border border-olive-100 dark:border-night-800 transition-all">
+      
+      {/* HEADER & TOGGLE */}
+      <div className="flex flex-col gap-6 mb-10">
+        <div className="flex justify-between items-center px-2">
+          <h2 className="text-2xl font-serif font-bold text-olive-800 dark:text-sand">Dhikr</h2>
+          <span className="text-2xl opacity-50">📿</span>
+        </div>
+        
+        <div className="flex bg-sand dark:bg-night-800 p-1.5 rounded-2xl w-full">
           <button
             onClick={() => setMode('counter')}
-            className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${
-              mode === 'counter' ? 'bg-olive text-white shadow-md' : 'text-neutral-600 hover:bg-neutral-200'
+            className={`flex-1 py-2.5 rounded-xl text-xs font-bold uppercase tracking-[0.2em] transition-all ${
+              mode === 'counter' ? 'bg-olive text-white shadow-md' : 'text-neutral-400'
             }`}
           >
             Counter
           </button>
           <button
             onClick={() => setMode('checklist')}
-            className={`px-5 py-2 rounded-lg text-sm font-medium transition-all ${
-              mode === 'checklist' ? 'bg-olive text-white shadow-md' : 'text-neutral-600 hover:bg-neutral-200'
+            className={`flex-1 py-2.5 rounded-xl text-xs font-bold uppercase tracking-[0.2em] transition-all ${
+              mode === 'checklist' ? 'bg-olive text-white shadow-md' : 'text-neutral-400'
             }`}
           >
             Checklist
@@ -98,104 +106,101 @@ addCustomDhikr(newLabel);
         </div>
       </div>
 
-      <div className="space-y-4">
+      {/* DHIKR LIST */}
+      <div className="space-y-8">
         {allDhikr.map((dhikr) => (
-          <div
-            key={dhikr.id}
-            className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 py-3 border-b border-neutral-100 last:border-0"
-          >
-            {editingId === dhikr.id && dhikr.isCustom ? (
-              <div className="flex-1 flex gap-2">
-                <input
-                  type="text"
-                  value={editValue}
-                  onChange={e => setEditValue(e.target.value)}
-                  className="flex-1 border border-neutral-300 p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive/50"
-                />
-                <button
-                  onClick={() => saveEdit(dhikr.id)}
-                  className="bg-olive text-white px-3 py-2 rounded-lg text-sm hover:bg-olive/90"
-                >
-                  Save
-                </button>
-                <button
-                  onClick={cancelEdit}
-                  className="bg-neutral-300 text-neutral-800 px-3 py-2 rounded-lg text-sm hover:bg-neutral-400"
-                >
-                  Cancel
-                </button>
-              </div>
-            ) : (
-              <div className="flex-1">
-                <p className="font-medium text-night">{dhikr.label}</p>
-                {dhikr.arabic && (
-                  <p className="text-sm text-neutral-600 font-arabic mt-1">{dhikr.arabic}</p>
-                )}
-              </div>
-            )}
-
-            <div className="flex items-center gap-3">
-              {mode === 'counter' ? (
-                <button
-                  onClick={() => countUp(dhikr.id)}
-                  className="min-w-[70px] h-11 bg-olive/10 text-olive font-bold rounded-full hover:bg-olive/20 transition flex items-center justify-center text-lg"
-                >
-                  {dhikr.count}
-                  {dhikr.defaultTarget !== undefined && (
-                    <span className="text-xs ml-1 opacity-70">/{dhikr.defaultTarget}</span>
-                  )}
-                </button>
+          <div key={dhikr.id} className="group flex flex-col gap-3 pb-6 border-b border-olive-50 dark:border-night-800 last:border-0">
+            
+            <div className="flex justify-between items-start gap-4">
+              {editingId === dhikr.id ? (
+                <div className="flex-1 flex flex-col gap-2">
+                  <input
+                    type="text"
+                    value={editValue}
+                    onChange={e => setEditValue(e.target.value)}
+                    className="w-full bg-sand dark:bg-night-800 border-2 border-olive-200 p-3 rounded-xl focus:outline-none text-sm"
+                  />
+                  <div className="flex gap-2">
+                    <button onClick={() => saveEdit(dhikr.id)} className="text-[10px] font-bold text-olive-600 uppercase">Save</button>
+                    <button onClick={() => setEditingId(null)} className="text-[10px] font-bold text-neutral-400 uppercase">Cancel</button>
+                  </div>
+                </div>
               ) : (
-                <input
-                  type="checkbox"
-                  checked={!!todayCounts[dhikr.id]}
-                  onChange={() => toggleDone(dhikr.id)}
-                  className="w-6 h-6 accent-olive rounded border-neutral-300"
-                />
-              )}
-
-              {dhikr.isCustom && (
-                <div className="flex gap-2">
-                  <button
-                    onClick={() => startEdit(dhikr)}
-                    className="text-sm text-blue-600 hover:text-blue-800"
-                    aria-label="Edit"
-                  >
-                    Edit
-                  </button>
-                  <button
-                    onClick={() => handleDelete(dhikr.id)}
-                    className="text-sm text-red-600 hover:text-red-800"
-                    aria-label="Delete"
-                  >
-                    Delete
-                  </button>
+                <div className="flex-1">
+                  <p className="font-serif text-lg leading-tight text-night-800 dark:text-sand/90">{dhikr.label}</p>
+                  {dhikr.arabic && (
+                    <p className="text-2xl font-arabic text-olive-600 dark:text-gold-500 mt-2 text-right dir-rtl leading-relaxed">
+                      {dhikr.arabic}
+                    </p>
+                  )}
                 </div>
               )}
+
+              {/* Interaction Target */}
+              <div className="flex flex-col items-center gap-3">
+                {mode === 'counter' ? (
+                  <button
+                    onClick={() => countUp(dhikr.id)}
+                    className="w-16 h-16 rounded-full bg-sand dark:bg-night-800 flex flex-col items-center justify-center border-2 border-transparent active:border-olive active:scale-90 transition-all shadow-inner"
+                  >
+                    <span className="text-xl font-bold font-serif">{dhikr.count}</span>
+                    {dhikr.defaultTarget && (
+                      <span className="text-[9px] opacity-40 font-bold">/{dhikr.defaultTarget}</span>
+                    )}
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => toggleDone(dhikr.id)}
+                    className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all ${
+                      todayCounts[dhikr.id] ? 'bg-olive text-white shadow-lg rotate-12' : 'bg-sand dark:bg-night-800'
+                    }`}
+                  >
+                    {todayCounts[dhikr.id] ? '✨' : '⚪'}
+                  </button>
+                )}
+              </div>
             </div>
+
+            {/* Custom Controls (Edit/Delete) */}
+            {dhikr.isCustom && editingId !== dhikr.id && (
+              <div className="flex gap-4 px-1">
+                <button 
+                  onClick={() => startEdit(dhikr)}
+                  className="text-[10px] font-bold text-olive-600/50 hover:text-olive-600 uppercase tracking-widest transition-colors"
+                >
+                  Edit
+                </button>
+                <button 
+                  onClick={() => handleDelete(dhikr.id)}
+                  className="text-[10px] font-bold text-red-400/50 hover:text-red-400 uppercase tracking-widest transition-colors"
+                >
+                  Delete
+                </button>
+              </div>
+            )}
           </div>
         ))}
       </div>
 
-      {/* Add Custom */}
-      <div className="mt-8 pt-5 border-t border-neutral-200">
-        <label className="block text-sm font-medium text-neutral-700 mb-3">
-          Add your own dhikr
+      {/* ADD CUSTOM FOOTER */}
+      <div className="mt-10 pt-8 border-t-2 border-dashed border-olive-50 dark:border-night-800">
+        <label className="block text-[10px] font-bold text-olive-600 dark:text-gold-500 uppercase tracking-[0.2em] mb-4 ml-2">
+          New Personal Dhikr
         </label>
-        <div className="flex flex-col sm:flex-row gap-3">
+        <div className="flex gap-2">
           <input
             type="text"
             value={newLabel}
             onChange={(e) => setNewLabel(e.target.value)}
-            placeholder="e.g. La ilaha illallah..."
-            className="flex-1 border border-neutral-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive/50 transition"
+            placeholder="SubhanAllah, Alhamdulillah..."
+            className="flex-1 bg-sand dark:bg-night-800 border-none rounded-2xl px-5 py-4 text-sm focus:ring-2 focus:ring-olive/20 dark:placeholder:text-night-700"
           />
           <button
             onClick={addCustom}
             disabled={!newLabel.trim()}
-            className="bg-olive text-white px-6 py-3 rounded-lg font-medium hover:bg-olive/90 transition disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-olive text-white w-14 h-14 rounded-2xl font-bold active:scale-95 disabled:opacity-30 flex items-center justify-center text-xl shadow-lg shadow-olive-500/20"
           >
-            Add
+            ＋
           </button>
         </div>
       </div>

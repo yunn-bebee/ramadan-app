@@ -4,30 +4,43 @@ import { useEffect } from 'react';
 import { useAppContext } from '../contexts/AppContext';
 import UsernamePopup from '../components/UsernamePopUp';
 
-export default function AppLayout() {const { appData } = useAppContext();
-useEffect(() => {
+export default function AppLayout() {
+  const { appData } = useAppContext();
+
+  useEffect(() => {
+    const root = document.documentElement;
     if (appData.settings.theme === 'dark') {
-      document.documentElement.classList.add('dark');
+      root.classList.add('dark');
     } else if (appData.settings.theme === 'light') {
-      document.documentElement.classList.remove('dark');
+      root.classList.remove('dark');
     } else {
-      // 'auto' - follow system preference
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
+      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      root.classList.toggle('dark', isDark);
     }
   }, [appData.settings.theme]);
+
   return (
-    <div className="min-h-screen flex flex-col bg-olive-100 dark:bg-night-800 dark:text-white text-night">
-      {/* You can add a Header here later */}
+    // Added 'transition-colors' for smooth theme switching and 'selection' colors for branding
+    <div className="min-h-screen flex flex-col bg-sand dark:bg-night-950 text-night-900 dark:text-sand transition-colors duration-500 selection:bg-olive-200">
       
-      <main className="flex-1 pb-20 overflow-y-auto">
+      {/* Background Ornament (Optional: adds a soft glow to the top right) */}
+      <div className="fixed top-0 right-0 w-[300px] h-[300px] bg-olive-100/40 dark:bg-olive-900/10 blur-[100px] pointer-events-none" />
+      
+      <main className="flex-1 pb-24 overflow-y-auto relative">
+        {/* We keep the popup here so it layers over content */}
         <UsernamePopup /> 
-        <Outlet />
+        
+        {/* Modern page transition wrapper */}
+        <div className="animate-in fade-in zoom-in-95 duration-500">
+          <Outlet />
+        </div>
       </main>
+
+      {/* Floating Bottom Navigation */}
       <BottomNav />
+      
+      {/* Safe Area Spacer for modern iPhones (Home Indicator) */}
+      <div className="h-[env(safe-area-inset-bottom)] bg-white/80 dark:bg-night-900/80 backdrop-blur-lg" />
     </div>
   )
 }

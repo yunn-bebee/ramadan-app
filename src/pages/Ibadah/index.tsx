@@ -1,4 +1,3 @@
-// src/pages/Ibadah/index.tsx
 import { useAppContext } from '../../contexts/AppContext';
 import DhikrSection from '../../components/DhikrCounter';
 import DuaVault from '../../components/DuaVault';
@@ -16,10 +15,7 @@ export default function Ibadah() {
 
   const togglePrayer = (prayer: keyof typeof log.prayers) => {
     updateDailyLog({
-      prayers: {
-        ...log.prayers,
-        [prayer]: !log.prayers[prayer],
-      },
+      prayers: { ...log.prayers, [prayer]: !log.prayers[prayer] },
     });
   };
 
@@ -28,123 +24,115 @@ export default function Ibadah() {
     updateDailyLog({ taraweeh: newValue });
   };
 
-
   const goal = appData.settings.taraweehGoal;
 
   return (
-    <div className="p-6 flex flex-col gap-6  min-h-screen">
-      <h1 className="text-2xl font-bold text-night">Ibadah Tracker</h1>
+    <div className="min-h-screen bg-sand dark:bg-night-950 text-night-900 dark:text-sand transition-colors duration-300 pb-24 px-5 pt-10">
+      <header className="mb-8">
+        <h1 className="text-4xl font-serif font-bold text-olive-600 dark:text-olive-400">My Ibadah</h1>
+        <p className="text-sm opacity-60 mt-1 uppercase tracking-widest">Building my Jannah</p>
+      </header>
 
-      {/* Fasting */}
-      <div className="bg-white p-5 rounded-xl shadow mb-6">
-        <h2 className="text-lg font-semibold mb-4">Fasting Today</h2>
-        <label className="flex items-center gap-3 cursor-pointer">
-          <input
-            type="checkbox"
-            checked={log.fasted ?? false}
-            onChange={(e) => updateDailyLog({ fasted: e.target.checked })}
-            className="w-6 h-6 accent-olive rounded border-neutral-300"
-          />
-          <span className="text-night font-medium">I fasted today ♡</span>
-        </label>
-        <p className="text-sm text-neutral-600 mt-2">
-          {log.fasted ? "Alhamdulillah — may Allah accept it" : "Don’t forget your intention for tomorrow"}
-        </p>
-      </div>
-
-      {/* Prayers */}
-      <div className="bg-white p-5 rounded-xl shadow">
-        <h2 className="text-lg font-semibold mb-4">Fard Prayers</h2>
-        <div className="grid grid-cols-5 gap-3">
-          {['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'].map((p) => (
-            <button
-              key={p}
-              onClick={() => togglePrayer(p as keyof typeof log.prayers)}
-              className={`p-4 rounded-lg text-center font-medium transition ${
-                log.prayers[p as keyof typeof log.prayers]
-                  ? 'bg-olive text-white'
-                  : 'bg-neutral-100 hover:bg-neutral-200'
-              }`}
-            >
-              {p.toUpperCase().slice(0, 3)}
-              {log.prayers[p as keyof typeof log.prayers] && ' ✓'}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Taraweeh */}
-      <div className="bg-white p-5 rounded-xl shadow">
-        <h2 className="text-lg font-semibold mb-4">Taraweeh</h2>
-        <div className="flex items-center justify-center gap-8">
-          <button
-            onClick={() => adjustTaraweeh(-1)}
-            className="w-12 h-12 bg-neutral-200 rounded-full text-2xl font-bold hover:bg-neutral-300"
+      <div className="flex flex-col gap-6 max-w-2xl mx-auto">
+        
+        {/* Fasting Card */}
+        <div className="bg-white dark:bg-night-900 p-6 rounded-[2.5rem] shadow-sm border border-olive-100 dark:border-night-800 flex items-center justify-between">
+          <div>
+            <h2 className="text-lg font-serif font-bold">Fasting Today</h2>
+            <p className="text-xs text-olive-600/70 dark:text-gold-500/70 italic">
+              {log.fasted ? "May Allah accept your fast ♡" : "Intention for Allah"}
+            </p>
+          </div>
+          <button 
+            onClick={() => updateDailyLog({ fasted: !log.fasted })}
+            className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl transition-all ${
+              log.fasted ? 'bg-olive text-white shadow-lg' : 'bg-sand dark:bg-night-800'
+            }`}
           >
-            -
-          </button>
-          <span className="text-3xl font-bold text-olive">
-            {log.taraweeh || 0} / {goal}
-          </span>
-          <button
-            onClick={() => adjustTaraweeh(1)}
-            className="w-12 h-12 bg-olive text-white rounded-full text-2xl font-bold hover:bg-olive/90"
-          >
-            +
+            {log.fasted ? "⭐" : "🌙"}
           </button>
         </div>
-      </div>
 
-      {/* Charity */}
-      <div className="bg-white p-5 rounded-xl shadow">
-        <h2 className="text-lg font-semibold mb-4">Charity Today</h2>
-        <div className="flex items-center gap-4">
-          <input
-            type="number"
-            value={log.charity ?? 0}
-            onChange={(e) => updateDailyLog({ charity: Number(e.target.value) })}
-            min="0"
-            className="border border-neutral-300 p-3 rounded-lg w-32 text-center focus:outline-none focus:ring-2 focus:ring-olive"
-          />
-          <span className="text-sm text-neutral-600">acts / amount given ♡</span>
+        {/* Fard Prayers Card */}
+        <div className="bg-white dark:bg-night-900 p-6 rounded-[2.5rem] shadow-sm border border-olive-100 dark:border-night-800">
+          <h2 className="text-xs font-bold uppercase tracking-widest opacity-50 mb-4 text-center">Fard Prayers</h2>
+          <div className="flex justify-between gap-2">
+            {['fajr', 'dhuhr', 'asr', 'maghrib', 'isha'].map((p) => (
+              <button
+                key={p}
+                onClick={() => togglePrayer(p as keyof typeof log.prayers)}
+                className={`flex-1 flex flex-col items-center py-4 rounded-2xl transition-all ${
+                  log.prayers[p as keyof typeof log.prayers]
+                    ? 'bg-olive text-white shadow-md'
+                    : 'bg-sand dark:bg-night-800 text-night-400'
+                }`}
+              >
+                <span className="text-[10px] font-bold uppercase mb-1">{p.slice(0, 3)}</span>
+                <span className="text-lg">{log.prayers[p as keyof typeof log.prayers] ? '✓' : '•'}</span>
+              </button>
+            ))}
+          </div>
         </div>
-        <p className="text-sm text-neutral-600 mt-2">
-          {log.charity > 0 ? "May Allah multiply it for you" : "Every small act counts..."}
-        </p>
-      </div>
 
-      {/* Discipline */}
-      <div className="bg-white p-5 rounded-xl shadow">
-        <h2 className="text-lg font-semibold mb-4">Discipline Today</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {[
-            { key: 'noGossip', label: 'No Gossip' },
-            { key: 'noComplaining', label: 'No Complaining' },
-            { key: 'loweredGaze', label: 'Lowered Gaze' },
-            { key: 'controlledAnger', label: 'Controlled Anger' },
-            { key: 'guardedTongue', label: 'Guarded Tongue' },
-          ].map(({ key, label }) => (
-            <label key={key} className="flex items-center gap-3 cursor-pointer">
-              <input
-                type="checkbox"
-                checked={log.discipline[key as keyof typeof log.discipline] ?? false}
-                onChange={(e) => updateDailyLog({
-                  discipline: {
-                    ...log.discipline,
-                    [key]: e.target.checked,
-                  },
-                })}
-                className="w-6 h-6 accent-olive rounded border-neutral-300"
+        {/* Taraweeh & Charity Row */}
+        <div className="grid grid-cols-2 gap-4">
+           {/* Taraweeh */}
+           <div className="bg-white dark:bg-night-900 p-5 rounded-[2.5rem] shadow-sm border border-olive-100 dark:border-night-800 flex flex-col items-center">
+              <span className="text-[10px] font-bold uppercase tracking-widest opacity-50 mb-3">Taraweeh</span>
+              <div className="flex items-center gap-4">
+                <button onClick={() => adjustTaraweeh(-1)} className="w-8 h-8 rounded-full bg-sand dark:bg-night-800 text-lg font-bold">-</button>
+                <span className="text-xl font-serif font-bold text-olive">{log.taraweeh}</span>
+                <button onClick={() => adjustTaraweeh(1)} className="w-8 h-8 rounded-full bg-olive text-white text-lg font-bold shadow-sm">+</button>
+              </div>
+              <span className="text-[10px] mt-2 opacity-40">Goal: {goal}</span>
+           </div>
+
+           {/* Charity */}
+           <div className="bg-white dark:bg-night-900 p-5 rounded-[2.5rem] shadow-sm border border-olive-100 dark:border-night-800 flex flex-col items-center">
+              <span className="text-[10px] font-bold uppercase tracking-widest opacity-50 mb-2">Charity</span>
+              <input 
+                type="number" 
+                value={log.charity || ''} 
+                onChange={(e) => updateDailyLog({ charity: Number(e.target.value) })}
+                placeholder="0"
+                className="w-full bg-transparent text-center text-xl font-serif font-bold text-olive border-none focus:ring-0"
               />
-              <span className="text-night font-medium">{label}</span>
-            </label>
-          ))}
+              <span className="text-[10px] opacity-40 uppercase">Acts of Sadaqah</span>
+           </div>
         </div>
-      </div>
 
-      {/* Dhikr & Dua */}
-      <DhikrSection />
-      <DuaVault />
+        {/* Discipline Section */}
+        <div className="bg-olive-900 dark:bg-night-900 p-8 rounded-[2.5rem] text-sand shadow-xl">
+          <h2 className="text-xs font-bold uppercase tracking-[0.2em] mb-6 opacity-60">Heart's Discipline</h2>
+          <div className="grid grid-cols-1 gap-4">
+            {[
+              { key: 'noGossip', label: 'No Gossip', emoji: '🙊' },
+              { key: 'noComplaining', label: 'No Complaining', emoji: '🤫' },
+              { key: 'loweredGaze', label: 'Lowered Gaze', emoji: '😌' },
+              { key: 'controlledAnger', label: 'Controlled Anger', emoji: '🧊' },
+              { key: 'guardedTongue', label: 'Guarded Tongue', emoji: '✨' },
+            ].map(({ key, label, emoji }) => (
+              <button 
+                key={key}
+                onClick={() => updateDailyLog({
+                  discipline: { ...log.discipline, [key]: !log.discipline[key as keyof typeof log.discipline] },
+                })}
+                className={`flex items-center justify-between p-4 rounded-2xl transition-all border ${
+                  log.discipline[key as keyof typeof log.discipline]
+                    ? 'bg-olive text-white border-gold-500 shadow-lg'
+                    : 'bg-white/5 border-white/10 opacity-70'
+                }`}
+              >
+                <span className="font-medium">{label}</span>
+                <span className="text-xl">{log.discipline[key as keyof typeof log.discipline] ? '✓' : emoji}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <DhikrSection />
+        <DuaVault />
+      </div>
     </div>
   );
 }

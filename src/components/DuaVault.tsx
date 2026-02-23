@@ -1,131 +1,79 @@
-// src/components/DuaVault.tsx
 import { useState } from 'react';
 import { useAppContext } from '../contexts/AppContext';
 import type { Dua } from '../types/types';
 import dayjs from 'dayjs';
 
 export default function DuaVault() {
-  const { appData, addDua, editDua, deleteDua } = useAppContext();
-
+  const { appData, addDua, deleteDua } = useAppContext();
   const [newText, setNewText] = useState('');
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [editText, setEditText] = useState('');
 
   const duas: Dua[] = appData.duaList ?? [];
 
   const handleAdd = () => {
+    if (!newText.trim()) return;
     addDua(newText);
     setNewText('');
   };
 
-  const startEdit = (dua: Dua) => {
-    setEditingId(dua.id);
-    setEditText(dua.text);
-  };
-
-  const saveEdit = (id: string) => {
-    editDua(id, editText);
-    setEditingId(null);
-    setEditText('');
-  };
-
-  const cancelEdit = () => {
-    setEditingId(null);
-    setEditText('');
-  };
-
-  const handleDelete = (id: string) => {
-    if (window.confirm('Delete this dua forever?')) {
-      deleteDua(id);
-    }
-  };
-
   return (
-    <div className="bg-white p-6 rounded-2xl shadow-lg border border-olive/10">
-      <h2 className="text-xl font-bold text-night mb-6">My Dua Vault</h2>
-
-      {/* Add New Dua */}
-      <div className="mb-8">
-        <label className="block text-sm font-medium text-neutral-700 mb-3">
-          Add a new dua
-        </label>
-        <div className="flex flex-col sm:flex-row gap-3">
-          <textarea
-            value={newText}
-            onChange={(e) => setNewText(e.target.value)}
-            placeholder="e.g. Rabbana atina fiddunya hasanatan wa fil akhirati hasanatan wa qina 'adhaban-nar..."
-            className="flex-1 border border-neutral-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive/50 resize-none h-24"
-          />
-          <button
-            onClick={handleAdd}
-            disabled={!newText.trim()}
-            className="bg-olive text-white px-6 py-3 rounded-lg font-medium hover:bg-olive/90 transition disabled:opacity-50 disabled:cursor-not-allowed sm:self-end"
-          >
-            Add
-          </button>
+    <div className="bg-white dark:bg-night-900 p-8 rounded-[2.5rem] shadow-sm border border-olive-100 dark:border-night-800 transition-all">
+      <div className="flex justify-between items-center mb-8">
+        <div>
+          <h2 className="text-2xl font-serif font-bold text-olive-800 dark:text-sand">Dua Vault</h2>
+          <p className="text-[10px] uppercase tracking-widest opacity-50 font-bold mt-1">My Whispers to Allah</p>
         </div>
+        <span className="text-2xl">🕯️</span>
       </div>
 
-      {/* List of Duas */}
-      <div className="space-y-4">
+      {/* Dua List */}
+      <div className="space-y-6 mb-10">
         {duas.length === 0 ? (
-          <p className="text-center text-neutral-500 italic">
-            Your duas will appear here ♡ Start whispering to Him...
-          </p>
+          <div className="text-center py-10 opacity-30 italic text-sm">
+            <p>Your vault is empty...</p>
+            <p>Start writing your heart's desires.</p>
+          </div>
         ) : (
           duas.map((dua) => (
-            <div
-              key={dua.id}
-              className="p-4 border border-neutral-200 rounded-lg hover:border-olive/30 transition"
+            <div 
+              key={dua.id} 
+              className="relative group bg-sand/30 dark:bg-night-800/40 p-6 rounded-[2rem] border border-olive-50 dark:border-night-800 transition-all hover:shadow-md"
             >
-              {editingId === dua.id ? (
-                <div className="flex flex-col gap-3">
-                  <textarea
-                    value={editText}
-                    onChange={(e) => setEditText(e.target.value)}
-                    className="border border-neutral-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-olive/50 resize-none h-24"
-                  />
-                  <div className="flex gap-3 self-end">
-                    <button
-                      onClick={() => saveEdit(dua.id)}
-                      className="bg-olive text-white px-4 py-2 rounded-lg text-sm hover:bg-olive/90"
-                    >
-                      Save
-                    </button>
-                    <button
-                      onClick={cancelEdit}
-                      className="bg-neutral-300 text-neutral-800 px-4 py-2 rounded-lg text-sm hover:bg-neutral-400"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <div className="flex flex-col gap-3">
-                  <p className="text-night leading-relaxed">{dua.text}</p>
-                  <p className="text-xs text-neutral-500">
-                    Added {dayjs(dua.createdAt).format('MMM D, YYYY')}
-                  </p>
-                  <div className="flex gap-3 self-end">
-                    <button
-                      onClick={() => startEdit(dua)}
-                      className="text-sm text-blue-600 hover:text-blue-800"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDelete(dua.id)}
-                      className="text-sm text-red-600 hover:text-red-800"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-              )}
+              <p className="text-lg leading-relaxed font-serif text-night-700 dark:text-sand/80 italic">
+                "{dua.text}"
+              </p>
+              
+              <div className="flex justify-between items-center mt-5 pt-4 border-t border-olive-100/50 dark:border-night-800/50">
+                <span className="text-[10px] font-bold opacity-30 uppercase tracking-tighter">
+                  {dayjs(dua.createdAt).format('MMMM D, YYYY')}
+                </span>
+                <button 
+                  onClick={() => deleteDua(dua.id)}
+                  className="text-[10px] font-bold text-red-400 bg-red-50 dark:bg-red-900/20 px-3 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-all"
+                >
+                  DELETE
+                </button>
+              </div>
             </div>
           ))
         )}
       </div>
+
+      {/* Input Area */}
+      <div className="space-y-3">
+        <textarea
+          value={newText}
+          onChange={(e) => setNewText(e.target.value)}
+          placeholder="What is your heart whispering today?"
+          className="w-full bg-sand dark:bg-night-800 border-none rounded-[2rem] p-6 text-base italic focus:ring-2 focus:ring-olive/10 min-h-[140px] resize-none placeholder:opacity-30"
+        />
+        <button
+          onClick={handleAdd}
+          disabled={!newText.trim()}
+          className="w-full bg-olive text-white py-5 rounded-[1.8rem] font-bold shadow-lg shadow-olive-500/20 active:scale-[0.98] transition-all disabled:opacity-30 flex items-center justify-center gap-3"
+        >
+          <span>✨</span> Deposit Dua
+        </button>
+      </div>
     </div>
   );
-}   
+}

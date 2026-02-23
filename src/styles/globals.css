@@ -109,3 +109,12 @@ input:focus, textarea:focus, select:focus, button:focus-visible {
 ::-webkit-scrollbar-thumb {
   @apply bg-olive-500/50 rounded-full hover:bg-olive-500;
 }
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
