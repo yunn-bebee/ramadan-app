@@ -11,13 +11,7 @@ export default function BottomNav() {
   };
 
   return (
-    /* Floating Container Changes:
-       - Added 'max-w-md mx-auto' to keep it centered and sized well on mobile.
-       - Changed 'bottom-0' to 'bottom-6' to lift it.
-       - Added 'rounded-2xl' for the pill shape.
-       - Added 'left-4 right-4' to create side margins.
-    */
-    <div className="fixed bottom-6 left-4 right-4 z-50 flex justify-center pointer-events-none">
+    <div className="fixed bottom-4 left-4 right-4 z-50 flex flex-col items-center pointer-events-none">
       <nav className="
         pointer-events-auto
         w-full max-w-md
@@ -26,7 +20,7 @@ export default function BottomNav() {
         backdrop-blur-xl 
         border border-olive-100/50 dark:border-night-800 
         flex items-center justify-around 
-        px-2 
+        px-1
         rounded-[24px] 
         shadow-[0_10px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_10px_40px_rgba(0,0,0,0.6)]
       ">
@@ -40,6 +34,21 @@ export default function BottomNav() {
         <NavItem to="/settings" icon={<HiCog size={24} />} label="Settings" getStyles={getLinkStyles} />
 
       </nav>
+
+      {/* --- The "Made with love" Tag --- */}
+      <div className="mt-1 pointer-events-auto flex items-center gap-1">
+        <span className="text-[10px] font-medium tracking-wider text-night-400/60 dark:text-sand/40">
+          Made with love by
+        </span>
+        <a 
+          href="https://github.com/yunn-bebee" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className="text-[10px] font-bold tracking-wider text-olive-600 dark:text-gold-500/60 hover:dark:text-gold-400 transition-colors"
+        >
+          bebee ♡
+        </a>
+      </div>
     </div>
   );
 }
@@ -49,7 +58,6 @@ function NavItem({ to, icon, label, getStyles }: { to: string; icon: React.React
     <NavLink to={to} className={({ isActive }) => getStyles(isActive)}>
       {({ isActive }) => (
         <>
-          {/* Active Indicator: Changed to a subtle dot at the bottom for a cleaner floating look */}
           <div 
             className={`absolute bottom-2 w-1 h-1 rounded-full transition-all duration-300 
               ${isActive 

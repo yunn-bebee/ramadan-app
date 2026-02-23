@@ -3,17 +3,9 @@ import dayjs from 'dayjs';
 import { useAppContext } from '../../contexts/AppContext';
 import { useQuranMetadata } from '../../hooks/useQuranMetadata';
 import { RAMADAN_START_2026 } from '../../constants/defaults';
-import juzRanges from '../../data/pageToSurah.json';
 import { HiBookmark, HiChevronRight, HiPlus } from 'react-icons/hi';
+import { Book } from 'lucide-react';
 
-interface JuzRange {
-  juz: number;
-  startPage: number;
-  endPage: number;
-}
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const juzMap = juzRanges as JuzRange[];
 
 export default function Quran() {
   const { appData, updateDailyLog, today } = useAppContext();
@@ -60,12 +52,19 @@ export default function Quran() {
   };
 
   return (
-    <div className="min-h-screen bg-sand dark:bg-night-950 pb-28 px-4 pt-6 space-y-6 max-w-md mx-auto transition-colors duration-500">
+    <div className="min-h-screen bg-sand dark:bg-night-950 pb-28 px-4  space-y-6 max-w-md mx-auto transition-colors duration-500">
       
       {/* HEADER */}
-      <header className="px-2">
-        <h1 className="text-2xl font-serif font-bold text-night-900 dark:text-sand">Quran Companion</h1>
-        <p className="text-xs font-bold text-olive-600 dark:text-gold-500 uppercase tracking-widest">Ramadan Progress</p>
+        {/* --- HEADER --- */}
+      <header className="py-3 pt-10 flex justify-between items-start">
+        <div>
+          <h1 className="text-4xl font-serif font-bold text-olive-600 dark:text-olive-400 flex items-center gap-2">
+Quran Plan          </h1>
+          <p className="text-sm font-medium opacity-60 mt-1 uppercase tracking-widest">Ramadan Progress</p>
+        </div>
+        <div className="bg-white/80 dark:bg-night-900/80 backdrop-blur-md p-3 rounded-2xl border border-olive-100 dark:border-night-800 shadow-sm">
+          <Book className="w-6 h-6 text-olive-600" />
+        </div>
       </header>
 
       {/* 1. PROGRESS CARD */}
@@ -73,7 +72,7 @@ export default function Quran() {
         <div className="flex justify-between items-end mb-4">
           <div>
             <p className="text-[10px] font-black uppercase text-neutral-400 dark:text-night-400 tracking-tighter">Total Read</p>
-            <p className="text-3xl font-mono font-bold text-night-900 dark:text-gold-400">
+            <p className="text-3xl   font-bold text-night-900 dark:text-gold-400">
               {totalRead}<span className="text-sm text-neutral-400 dark:text-night-500 font-sans ml-1">/ {targetTotal} pgs</span>
             </p>
           </div>
@@ -110,7 +109,7 @@ export default function Quran() {
            <div className="relative z-10">
              <h3 className="text-[10px] font-black uppercase tracking-widest opacity-80">Daily Target</h3>
              <div className="flex items-center gap-3 mt-1">
-                <span className="text-4xl font-mono font-bold">{suggestedDaily}</span>
+                <span className="text-4xl   font-bold">{suggestedDaily}</span>
                 <span className="text-sm opacity-90 leading-tight">pages to stay<br/>on track</span>
              </div>
            </div>
@@ -121,7 +120,7 @@ export default function Quran() {
 
         <section className="bg-white dark:bg-night-900 rounded-3xl p-6 border border-olive-100 dark:border-night-800 shadow-sm">
           <h3 className="text-center text-[10px] font-black uppercase tracking-widest text-neutral-400 mb-2">Read Today</h3>
-          <p className="text-5xl font-mono font-bold text-center text-night-900 dark:text-sand mb-6">{pagesToday}</p>
+          <p className="text-5xl   font-bold text-center text-night-900 dark:text-sand mb-6">{pagesToday}</p>
           
           <div className="flex flex-col gap-3">
             <div className="flex justify-center gap-2">

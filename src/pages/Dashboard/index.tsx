@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 import dayOfYear from 'dayjs/plugin/dayOfYear';
 import { useAppContext } from '../../contexts/AppContext';
@@ -27,7 +27,7 @@ const formatCountdown = (ms: number): string => {
 export default function Dashboard() {
   const { appData, today } = useAppContext();
   const { times } = usePrayerTimes();
-  const navigate = useNavigate();
+
   const hadith = getHadithOfTheDay();
 
   const [currentTime, setCurrentTime] = useState(dayjs().format('HH:mm:ss'));

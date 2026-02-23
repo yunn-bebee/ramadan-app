@@ -2,6 +2,7 @@ import { useState } from 'react';
 import commonCities from '../../data/CommonCities.json';
 import dayjs from 'dayjs';
 import { useAppContext } from '../../contexts/AppContext';
+import { SettingsIcon } from 'lucide-react';
 
 interface City {
   name: string;
@@ -44,12 +45,19 @@ export default function Settings() {
   };
 
   return (
-    <div className="min-h-screen bg-sand dark:bg-night-950 text-night-900 dark:text-sand transition-colors duration-300 ">
+    <div className="min-h-screen bg-sand dark:bg-night-950 pb-28   space-y-6 max-w-md mx-auto transition-colors duration-500">
       
-      {/* Header */}
-      <header className="p-8 pt-12 text-center">
-        <h1 className="text-4xl font-serif font-bold text-olive-600 dark:text-olive-400">Settings</h1>
-        <p className="text-sm opacity-60 mt-2 italic">Tailor your Ramadan experience</p>
+      {/* HEADER */}
+        {/* --- HEADER --- */}
+      <header className="p-6 pt-10 flex justify-between items-start">
+        <div>
+          <h1 className="text-4xl font-serif font-bold text-olive-600 dark:text-olive-400 flex items-center gap-2">
+Settings          </h1>
+          <p className="text-sm font-medium opacity-60 mt-1 uppercase tracking-widest">Customize your experience</p>
+        </div>
+        <div className="bg-white/80 dark:bg-night-900/80 backdrop-blur-md p-3 rounded-2xl border border-olive-100 dark:border-night-800 shadow-sm">
+          <SettingsIcon className="w-6 h-6 text-olive-600" />
+        </div>
       </header>
 
       <main className="px-5 flex flex-col gap-6 max-w-2xl mx-auto">

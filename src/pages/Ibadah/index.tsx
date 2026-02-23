@@ -1,6 +1,7 @@
 import { useAppContext } from '../../contexts/AppContext';
 import DhikrSection from '../../components/DhikrCounter';
 import DuaVault from '../../components/DuaVault';
+import { Heart } from 'lucide-react';
 
 export default function Ibadah() {
   const { appData, today, updateDailyLog } = useAppContext();
@@ -27,10 +28,18 @@ export default function Ibadah() {
   const goal = appData.settings.taraweehGoal;
 
   return (
-    <div className="min-h-screen bg-sand dark:bg-night-950 text-night-900 dark:text-sand transition-colors duration-300 pb-24 px-5 pt-10">
-      <header className="mb-8">
-        <h1 className="text-4xl font-serif font-bold text-olive-600 dark:text-olive-400">My Ibadah</h1>
-        <p className="text-sm opacity-60 mt-1 uppercase tracking-widest">Building my Jannah</p>
+    <div className="min-h-screen bg-sand dark:bg-night-950 text-night-900 dark:text-sand transition-colors duration-300 pb-24 px-5 ">
+        {/* --- HEADER --- */}
+      <header className="py-6 pt-10 flex justify-between items-start">
+        <div>
+          <h1 className="text-4xl font-serif font-bold text-olive-600 dark:text-olive-400 flex items-center gap-2">
+            My Ibadah 
+          </h1>
+          <p className="text-sm font-medium opacity-60 mt-1 uppercase tracking-widest">Building my Jannah</p>
+        </div>
+        <div className="bg-white/80 dark:bg-night-900/80 backdrop-blur-md p-3 rounded-2xl border border-olive-100 dark:border-night-800 shadow-sm">
+          <Heart className="w-6 h-6 text-olive-600" />
+        </div>
       </header>
 
       <div className="flex flex-col gap-6 max-w-2xl mx-auto">

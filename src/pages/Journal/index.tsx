@@ -54,7 +54,7 @@ export default function Journal() {
       <header className="p-6 pt-10 flex justify-between items-start">
         <div>
           <h1 className="text-4xl font-serif font-bold text-olive-600 dark:text-olive-400 flex items-center gap-2">
-            Journal <BookOpen className="w-8 h-8 opacity-40" />
+            Journal 
           </h1>
           <p className="text-sm font-medium opacity-60 mt-1 uppercase tracking-widest">Ramadan 2026</p>
         </div>

@@ -40,7 +40,7 @@ export default function AppLayout() {
       <BottomNav />
       
       {/* Safe Area Spacer for modern iPhones (Home Indicator) */}
-      <div className="h-[env(safe-area-inset-bottom)] bg-white/80 dark:bg-night-900/80 backdrop-blur-lg" />
+      <div className="h-10 bg-white/80 dark:bg-night-900/80 backdrop-blur-lg" />
     </div>
   )
 }
